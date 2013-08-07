@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="equip_garage">
+		<item>Porte</item>
+		<item>Lumière</item>
+	</string-array>
+	
+	<string-array name="equip_cave">
+		<item>Ventilation</item>
+		<item>Lumière</item>
+	</string-array>
+	
+	<string-array name="equip_cuisine">
+		<item>Four</item>
+		<item>Lumière</item>
+		<item>Volets</item>
+	</string-array>
+	
+	<string-array name="equip_salon">
+		<item>Télévision</item>
+		<item>Lumière</item>
+		<item>Volets</item>
+	</string-array>
+	
+	<string-array name="equip_sam">
+		<item>Radio</item>
+		<item>Lumière</item>
+		<item>Volets</item>
+	</string-array>
+	
+	<string-array name="equip_entree">
+		<item>Lumière</item>
+	</string-array>
+	
+	<string-array name="equip_chb">
+		<item>Lumière</item>
+		<item>Volets</item>
+	</string-array>
+	
+	<string-array name="equip_sdb">
+		<item>Chauffage</item>
+		<item>Lumière</item>
+	</string-array>
+
+	<string-array name="pieces_ss">
+		<item>Cave</item>
+		<item>Garage</item>
+	</string-array>
+	
+	<string-array name="pieces_rdc">
+		<item>Cuisine</item>
+		<item>Salon</item>
+		<item>Salle à Manger</item>
+		<item>Entrée</item>
+	</string-array>
+	
+	<string-array name="pieces_etg">
+		<item>Chambre Florent</item>
+		<item>Chambre Julien</item>
+		<item>Chambre Alex</item>
+		<item>Salle de Bain</item>
+	</string-array>
+	
+	<string-array name="zones">
+		<item>Sous-sol</item>
+		<item>Rez-de-chaussée</item>
+		<item>Etage 1</item>
+		<item>Etage 2</item>
+		<item>Etage 3</item>
+	</string-array>
+
+</resources>

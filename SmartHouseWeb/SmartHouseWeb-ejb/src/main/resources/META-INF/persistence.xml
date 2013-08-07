@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="SmartHouse" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/SmartHouseDS</jta-data-source>
+		<class>smarthouse.ejb.entity.third.User</class>
+		<class>smarthouse.ejb.entity.pattern.Action</class>
+		<class>smarthouse.ejb.entity.domain.Area</class>
+		<class>smarthouse.ejb.entity.domain.DriverIdentifier</class>
+		<class>smarthouse.ejb.entity.domain.Equipment</class>
+		<class>smarthouse.ejb.entity.domain.Home</class>
+		<class>smarthouse.ejb.entity.domain.Room</class>
+		<class>smarthouse.ejb.entity.pattern.Scenario</class>
+		<class>smarthouse.ejb.entity.pattern.Task</class>
+		<class>smarthouse.ejb.entity.pattern.trigger.ATrigger</class>
+		<class>smarthouse.ejb.entity.pattern.trigger.DailyTrigger</class>
+		<class>smarthouse.ejb.entity.pattern.trigger.OnceTrigger</class>
+		<class>smarthouse.ejb.entity.pattern.trigger.WeeklyTrigger</class>
+		<class>smarthouse.ejb.entity.pattern.trigger.MonthlyTrigger</class>
+		<properties>
+			<!-- JTA Contexte -->
+			<property name="current_session_context_class" value="jta" />
+			
+			<!-- Some configs -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.archive.autodetection" value="class"/>
+			<property name="hibernate.connection.release_mode" value="auto" />
+			
+			<!-- CMT Mode -->
+			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+			<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.CMTTransactionFactory" />
+
+			<!-- Second cache level -->
+		    <!-- <property name="hibernate.cache.use_second_level_cache" value="true" />
+		    <property name="hibernate.cache.use_query_cache" value="false" />     
+		    <property name="hibernate.cache.infinispan.cachemanager" value="java:jboss/infinispan/hibernate"/>
+		    <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.infinispan.JndiInfinispanRegionFactory"/> -->
+			
+			<!-- org.hibernate.transaction.JTATransactionFactory -->
+			<property name="hibernate.show_sql" value="false" />
+			<!-- <property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.infinispan.InfinispanRegionFactory" /> -->
+		</properties>
+	</persistence-unit>
+</persistence>

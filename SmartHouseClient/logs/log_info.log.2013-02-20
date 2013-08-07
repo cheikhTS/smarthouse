@@ -1,0 +1,2 @@
+2013-02-20 11:09:22,217 WARN  [SerializationSource] Serialization source file db.serial corrupted : uc.equipment.SimulatedLightLapeyreDriver
+2013-02-20 11:16:53,115 WARN  [SerializationSource] Serialization source file db.serial missing or corrupted

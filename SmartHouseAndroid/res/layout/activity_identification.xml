@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
+
+   
+    <TextView
+        android:id="@+id/txt_identifiant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/identiant"
+        android:textColor="@color/black_color"
+        android:textIsSelectable="false"
+        android:textSize="@dimen/normal_text_size" />
+    
+     <EditText 
+        android:id="@+id/edt_identifiant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="12"
+        android:inputType="text" >
+        <requestFocus />
+    </EditText>
+
+     <CheckBox
+         android:id="@+id/cb_memorizeId"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="right"
+         android:text="@string/cb_memorizeId" />
+    
+    <TextView
+        android:id="@+id/txt_titre_mdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/large_margin"
+        android:text="@string/password"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/normal_text_size"
+        android:textIsSelectable="false" />
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="12"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:text="@string/connect" />
+
+</LinearLayout>

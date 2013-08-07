@@ -1,0 +1,20 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	display: block;
+	background-image: linear-gradient(left, rgb(255, 255, 255) 100%,
+		rgb(235, 242, 245) 70% );
+	background-image: -o-linear-gradient(left, rgb(255, 255, 255) 100%,
+		rgb(235, 242, 245) 70% );
+	background-image: -moz-linear-gradient(left, rgb(255, 255, 255) 100%,
+		rgb(235, 242, 245) 70% );
+	background-image: -webkit-linear-gradient(left, rgb(255, 255, 255) 100%,
+		rgb(235, 242, 245) 70% );
+	background-image: -ms-linear-gradient(left, rgb(255, 255, 255) 100%,
+		rgb(235, 242, 245) 70% );
+	background-image: -webkit-gradient(linear, left bottom, right bottom, color-stop(0.03,
+		rgb(255, 255, 255) ), color-stop(0.7, rgb(235, 242, 245) ) );
+}

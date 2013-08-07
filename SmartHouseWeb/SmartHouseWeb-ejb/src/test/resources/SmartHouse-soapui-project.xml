@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="SmartHouse" resourceRoot="" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HouseExplorerBeanServiceSoapBinding" type="wsdl" bindingName="{http://service.ejb.smarthouse/}HouseExplorerBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer?wsdl"><con:part><con:url>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HouseExplorerBeanService" targetNamespace="http://service.ejb.smarthouse/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.ejb.smarthouse/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.ejb.smarthouse/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getEquipmentInfos" type="tns:getEquipmentInfos"/>
+      <xs:element name="getEquipmentInfosResponse" type="tns:getEquipmentInfosResponse"/>
+      <xs:element name="getHome" type="tns:getHome"/>
+      <xs:element name="getHomeResponse" type="tns:getHomeResponse"/>
+      <xs:complexType name="getHome">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getHomeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:home"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="home">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="areas" nillable="true" type="tns:area"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="scenarios" nillable="true" type="tns:scenario"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="area">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="rooms" nillable="true" type="tns:room"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="room">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="equipments" nillable="true" type="tns:equipment"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="equipment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="driverIdentifier" type="tns:driverIdentifier"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="properties" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="driverIdentifier">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="driverName" type="xs:string"/>
+          <xs:element minOccurs="0" name="driverPath" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="scenario">
+        <xs:sequence>
+          <xs:element name="enabled" type="xs:boolean"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="tasks" nillable="true" type="tns:task"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="task">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="actions" nillable="true" type="tns:action"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="scenario" type="tns:scenario"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="triggers" nillable="true" type="tns:aTrigger"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="action">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="args" type="xs:string"/>
+          <xs:element minOccurs="0" name="equipment" type="tns:equipment"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="method" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="task" type="tns:task"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="aTrigger">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dateExpiration" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dateStart" type="xs:dateTime"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element name="startTime" type="xs:long"/>
+          <xs:element minOccurs="0" name="task" type="tns:task"/>
+          <xs:element minOccurs="0" name="timer" type="tns:timer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="timer">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getEquipmentInfos">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getEquipmentInfosResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:runtimeEquipmentInfos"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="runtimeEquipmentInfos">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="config" type="xs:string"/>
+          <xs:element minOccurs="0" name="state" type="xs:string"/>
+          <xs:element minOccurs="0" name="hardwareIdentifier" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="actions" nillable="true" type="tns:runtimeActionDef"/>
+          <xs:element minOccurs="0" name="hardwareName" type="xs:string"/>
+          <xs:element minOccurs="0" name="hardwareDescription" type="xs:string"/>
+          <xs:element minOccurs="0" name="hardwareManufacturer" type="xs:string"/>
+          <xs:element minOccurs="0" name="driverVersion" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="runtimeActionDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="actionName" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="params" nillable="true" type="tns:runtimeParamDef"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="runtimeParamDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="type" type="tns:paramType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="labels" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="min" type="xs:int"/>
+          <xs:element minOccurs="0" name="max" type="xs:int"/>
+          <xs:element minOccurs="0" name="floatMin" type="xs:float"/>
+          <xs:element minOccurs="0" name="floatMax" type="xs:float"/>
+          <xs:element minOccurs="0" name="step" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="paramType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MULTI_VALUES"/>
+          <xs:enumeration value="LIMITED_STRING"/>
+          <xs:enumeration value="LIMITED_INTEGER"/>
+          <xs:enumeration value="LIMITED_FLOAT"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="Exception" type="tns:Exception"/>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getEquipmentInfos">
+    <wsdl:part element="tns:getEquipmentInfos" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHomeResponse">
+    <wsdl:part element="tns:getHomeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEquipmentInfosResponse">
+    <wsdl:part element="tns:getEquipmentInfosResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHome">
+    <wsdl:part element="tns:getHome" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HouseExplorer">
+    <wsdl:operation name="getHome">
+      <wsdl:input message="tns:getHome" name="getHome"></wsdl:input>
+      <wsdl:output message="tns:getHomeResponse" name="getHomeResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEquipmentInfos">
+      <wsdl:input message="tns:getEquipmentInfos" name="getEquipmentInfos"></wsdl:input>
+      <wsdl:output message="tns:getEquipmentInfosResponse" name="getEquipmentInfosResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HouseExplorerBeanServiceSoapBinding" type="tns:HouseExplorer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getHome">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getHome">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getHomeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEquipmentInfos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getEquipmentInfos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEquipmentInfosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HouseExplorerBeanService">
+    <wsdl:port binding="tns:HouseExplorerBeanServiceSoapBinding" name="HouseExplorerPort">
+      <soap:address location="http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer</con:endpoint><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer</con:endpoint><con:endpoint>http://192.168.24.2:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getHome" bindingOperationName="getHome" type="Request-Response" outputName="getHomeResponse" inputName="getHome" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getHome/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/HouseExplorer/getHome"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getEquipmentInfos" bindingOperationName="getEquipmentInfos" type="Request-Response" outputName="getEquipmentInfosResponse" inputName="getEquipmentInfos" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HouseExplorer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getEquipmentInfos>
+         <arg0>1</arg0>
+      </ser:getEquipmentInfos>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/HouseExplorer/getEquipmentInfos"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="DevelopmentBeanServiceSoapBinding" type="wsdl" bindingName="{http://service.ejb.smarthouse/}DevelopmentBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://rb-flo:8080/SmartHouseWeb-ejb-1.0.0/Development?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://rb-flo:8080/SmartHouseWeb-ejb-1.0.0/Development?wsdl"><con:part><con:url>http://rb-flo:8080/SmartHouseWeb-ejb-1.0.0/Development?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="DevelopmentBeanService" targetNamespace="http://service.ejb.smarthouse/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.ejb.smarthouse/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.ejb.smarthouse/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="driverFactoryLoading" type="tns:driverFactoryLoading"/>
+      <xs:element name="driverFactoryLoadingResponse" type="tns:driverFactoryLoadingResponse"/>
+      <xs:element name="generateExampleData" type="tns:generateExampleData"/>
+      <xs:element name="generateExampleDataResponse" type="tns:generateExampleDataResponse"/>
+      <xs:element name="loadJar" type="tns:loadJar"/>
+      <xs:element name="loadJarResponse" type="tns:loadJarResponse"/>
+      <xs:element name="testLight" type="tns:testLight"/>
+      <xs:element name="testLightResponse" type="tns:testLightResponse"/>
+      <xs:element name="testMakeEquipmentInfos" type="tns:testMakeEquipmentInfos"/>
+      <xs:element name="testMakeEquipmentInfosResponse" type="tns:testMakeEquipmentInfosResponse"/>
+      <xs:element name="testPi4j" type="tns:testPi4j"/>
+      <xs:element name="testPi4jResponse" type="tns:testPi4jResponse"/>
+      <xs:element name="toggleLight" type="tns:toggleLight"/>
+      <xs:element name="toggleLightResponse" type="tns:toggleLightResponse"/>
+      <xs:complexType name="toggleLight">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="toggleLightResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="testPi4j">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="testPi4jResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="driverFactoryLoading">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="driverFactoryLoadingResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="generateExampleData">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="generateExampleDataResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="testLight">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="testLightResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="loadJar">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="loadJarResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="testMakeEquipmentInfos">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="testMakeEquipmentInfosResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:runtimeEquipmentInfos"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="runtimeEquipmentInfos">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="config" type="xs:string"/>
+          <xs:element minOccurs="0" name="state" type="xs:string"/>
+          <xs:element minOccurs="0" name="hardwareIdentifier" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="actions" nillable="true" type="tns:runtimeActionDef"/>
+          <xs:element minOccurs="0" name="hardwareName" type="xs:string"/>
+          <xs:element minOccurs="0" name="hardwareDescription" type="xs:string"/>
+          <xs:element minOccurs="0" name="hardwareManufacturer" type="xs:string"/>
+          <xs:element minOccurs="0" name="driverVersion" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="runtimeActionDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="actionName" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="params" nillable="true" type="tns:runtimeParamDef"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="runtimeParamDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="type" type="tns:paramType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="labels" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="min" type="xs:int"/>
+          <xs:element minOccurs="0" name="max" type="xs:int"/>
+          <xs:element minOccurs="0" name="floatMin" type="xs:float"/>
+          <xs:element minOccurs="0" name="floatMax" type="xs:float"/>
+          <xs:element minOccurs="0" name="step" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="paramType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MULTI_VALUES"/>
+          <xs:enumeration value="LIMITED_STRING"/>
+          <xs:enumeration value="LIMITED_INTEGER"/>
+          <xs:enumeration value="LIMITED_FLOAT"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="Exception" type="tns:Exception"/>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="testMakeEquipmentInfos">
+    <wsdl:part element="tns:testMakeEquipmentInfos" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testPi4jResponse">
+    <wsdl:part element="tns:testPi4jResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="driverFactoryLoading">
+    <wsdl:part element="tns:driverFactoryLoading" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loadJarResponse">
+    <wsdl:part element="tns:loadJarResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testPi4j">
+    <wsdl:part element="tns:testPi4j" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateExampleDataResponse">
+    <wsdl:part element="tns:generateExampleDataResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateExampleData">
+    <wsdl:part element="tns:generateExampleData" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="toggleLightResponse">
+    <wsdl:part element="tns:toggleLightResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testLight">
+    <wsdl:part element="tns:testLight" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testLightResponse">
+    <wsdl:part element="tns:testLightResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testMakeEquipmentInfosResponse">
+    <wsdl:part element="tns:testMakeEquipmentInfosResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="driverFactoryLoadingResponse">
+    <wsdl:part element="tns:driverFactoryLoadingResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="toggleLight">
+    <wsdl:part element="tns:toggleLight" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loadJar">
+    <wsdl:part element="tns:loadJar" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Development">
+    <wsdl:operation name="toggleLight">
+      <wsdl:input message="tns:toggleLight" name="toggleLight"></wsdl:input>
+      <wsdl:output message="tns:toggleLightResponse" name="toggleLightResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testPi4j">
+      <wsdl:input message="tns:testPi4j" name="testPi4j"></wsdl:input>
+      <wsdl:output message="tns:testPi4jResponse" name="testPi4jResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="driverFactoryLoading">
+      <wsdl:input message="tns:driverFactoryLoading" name="driverFactoryLoading"></wsdl:input>
+      <wsdl:output message="tns:driverFactoryLoadingResponse" name="driverFactoryLoadingResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateExampleData">
+      <wsdl:input message="tns:generateExampleData" name="generateExampleData"></wsdl:input>
+      <wsdl:output message="tns:generateExampleDataResponse" name="generateExampleDataResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testLight">
+      <wsdl:input message="tns:testLight" name="testLight"></wsdl:input>
+      <wsdl:output message="tns:testLightResponse" name="testLightResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadJar">
+      <wsdl:input message="tns:loadJar" name="loadJar"></wsdl:input>
+      <wsdl:output message="tns:loadJarResponse" name="loadJarResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testMakeEquipmentInfos">
+      <wsdl:input message="tns:testMakeEquipmentInfos" name="testMakeEquipmentInfos"></wsdl:input>
+      <wsdl:output message="tns:testMakeEquipmentInfosResponse" name="testMakeEquipmentInfosResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DevelopmentBeanServiceSoapBinding" type="tns:Development">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="toggleLight">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="toggleLight">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="toggleLightResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testPi4j">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="testPi4j">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testPi4jResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="driverFactoryLoading">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="driverFactoryLoading">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="driverFactoryLoadingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateExampleData">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="generateExampleData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generateExampleDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testLight">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="testLight">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testLightResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadJar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="loadJar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loadJarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testMakeEquipmentInfos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="testMakeEquipmentInfos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testMakeEquipmentInfosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DevelopmentBeanService">
+    <wsdl:port binding="tns:DevelopmentBeanServiceSoapBinding" name="DevelopmentPort">
+      <soap:address location="http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:endpoint>http://192.168.24.2:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="generateExampleData" bindingOperationName="generateExampleData" type="Request-Response" outputName="generateExampleDataResponse" inputName="generateExampleData" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:generateExampleData/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/generateExampleData"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="loadJar" bindingOperationName="loadJar" type="Request-Response" outputName="loadJarResponse" inputName="loadJar" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:loadJar/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/loadJar"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="driverFactoryLoading" bindingOperationName="driverFactoryLoading" type="Request-Response" outputName="driverFactoryLoadingResponse" inputName="driverFactoryLoading" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:driverFactoryLoading/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/driverFactoryLoading"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="testMakeEquipmentInfos" bindingOperationName="testMakeEquipmentInfos" type="Request-Response" outputName="testMakeEquipmentInfosResponse" inputName="testMakeEquipmentInfos" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:testMakeEquipmentInfos>
+         <arg0>30</arg0>
+      </ser:testMakeEquipmentInfos>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/testMakeEquipmentInfos"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="toggleLight" bindingOperationName="toggleLight" type="Request-Response" outputName="toggleLightResponse" inputName="toggleLight" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.24.2:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:toggleLight/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/toggleLight"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="testLight" bindingOperationName="testLight" type="Request-Response" outputName="testLightResponse" inputName="testLight" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.24.2:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:testLight/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/testLight"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="testPi4j" bindingOperationName="testPi4j" type="Request-Response" outputName="testPi4jResponse" inputName="testPi4j" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/Development</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:testPi4j/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Development/testPi4j"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AuthenticationBeanServiceSoapBinding" type="wsdl" bindingName="{http://service.ejb.smarthouse/}AuthenticationBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/SmartHouseWeb-ejb-1.0.0/Authentication?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/SmartHouseWeb-ejb-1.0.0/Authentication?wsdl"><con:part><con:url>http://localhost:8080/SmartHouseWeb-ejb-1.0.0/Authentication?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="AuthenticationBeanService" targetNamespace="http://service.ejb.smarthouse/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.ejb.smarthouse/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://service.ejb.smarthouse/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="login" type="tns:login"/>
+      <xs:element name="loginResponse" type="tns:loginResponse"/>
+      <xs:element name="ping" type="tns:ping"/>
+      <xs:element name="pingResponse" type="tns:pingResponse"/>
+      <xs:complexType name="login">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ping">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="pingResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="login">
+    <wsdl:part element="tns:login" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ping">
+    <wsdl:part element="tns:ping" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pingResponse">
+    <wsdl:part element="tns:pingResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part element="tns:loginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Authentication">
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:login" name="login"></wsdl:input>
+      <wsdl:output message="tns:loginResponse" name="loginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <wsdl:input message="tns:ping" name="ping"></wsdl:input>
+      <wsdl:output message="tns:pingResponse" name="pingResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AuthenticationBeanServiceSoapBinding" type="tns:Authentication">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="login">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ping">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AuthenticationBeanService">
+    <wsdl:port binding="tns:AuthenticationBeanServiceSoapBinding" name="AuthenticationPort">
+      <soap:address location="http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/Authentication"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/Authentication</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="login" bindingOperationName="login" type="Request-Response" outputName="loginResponse" inputName="login" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/Authentication</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:login>
+         <!--Optional:-->
+         <arg0>admin</arg0>
+         <!--Optional:-->
+         <arg1>admin</arg1>
+      </ser:login>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Authentication/login"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="ping" bindingOperationName="ping" type="Request-Response" outputName="pingResponse" inputName="ping" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/Authentication</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ping/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/Authentication/ping"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HousePilotBeanServiceSoapBinding" type="wsdl" bindingName="{http://service.ejb.smarthouse/}HousePilotBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/SmartHouseWeb-ejb-1.0.0/HousePilot?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/SmartHouseWeb-ejb-1.0.0/HousePilot?wsdl"><con:part><con:url>http://localhost:8080/SmartHouseWeb-ejb-1.0.0/HousePilot?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HousePilotBeanService" targetNamespace="http://service.ejb.smarthouse/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.ejb.smarthouse/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.ejb.smarthouse/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="executeAction" type="tns:executeAction"/>
+      <xs:element name="executeActionResponse" type="tns:executeActionResponse"/>
+      <xs:complexType name="executeAction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:actionRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="actionRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="action" type="xs:string"/>
+          <xs:element name="idEquipment" type="xs:int"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="params" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="executeActionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:actionResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="actionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="result" type="xs:string"/>
+          <xs:element minOccurs="0" name="value" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Exception" type="tns:Exception"/>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="executeAction">
+    <wsdl:part element="tns:executeAction" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeActionResponse">
+    <wsdl:part element="tns:executeActionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HousePilot">
+    <wsdl:operation name="executeAction">
+      <wsdl:input message="tns:executeAction" name="executeAction"></wsdl:input>
+      <wsdl:output message="tns:executeActionResponse" name="executeActionResponse"></wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HousePilotBeanServiceSoapBinding" type="tns:HousePilot">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="executeAction">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="executeAction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="executeActionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HousePilotBeanService">
+    <wsdl:port binding="tns:HousePilotBeanServiceSoapBinding" name="HousePilotPort">
+      <soap:address location="http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/HousePilot"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://PC-Flo:8080/SmartHouseWeb-ejb-1.0.0/HousePilot</con:endpoint><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HousePilot?wsdl</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="executeAction" bindingOperationName="executeAction" type="Request-Response" outputName="executeActionResponse" inputName="executeAction" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RB-Flo:8080/SmartHouseWeb-ejb-1.0.0/HousePilot?wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ejb.smarthouse/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:executeAction>
+         <!--Optional:-->
+         <arg0>
+            <idEquipment>4</idEquipment>
+            <!--Optional:-->
+            <action>varier</action>
+            <params>1.0</params>
+         </arg0>
+      </ser:executeAction>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.ejb.smarthouse/HousePilot/executeAction"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

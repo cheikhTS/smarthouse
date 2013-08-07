@@ -1,0 +1,27 @@
+*********************************************
+* Requis
+*********************************************
+- Eclipse Java EE (Juno ou plus)
+- JBoss Tools (dispo sur Market)
+- Maven Integration for Eclipse (dispo sur Market)
+- Subclipse (dispo sur Market)
+
+
+*********************************************
+* Création serveur d'application JBoss AS 7.1
+*********************************************
+* Window > Preferences > Servers > Runtime Environments
+Sur la droite : Add > JBoss Community > JBoss 7.1 Runtime
+"Download and install runtime" pour télécharger la version 7.1.1.Final
+puis pointer le répertoire où JBoss est installé par Eclipse puis finish.
+
+* Dans la vue "Servers", clique droit > New > Server > JBoss AS 7.1 > Next > Next
+Ajouter SmartHouseWeb-ear en "Configured" puis Finish
+
+* Copier/Coller les fichiers du dossier "SERVER_CONFIG" du projet SmartHouseWeb
+vers <répertoire JBossAS>/standalone/configuration/
+
+* Dézipper module-JBossAS7.1.1-mysql.zip à la racine du répertoire JBossAS.
+
+* Pour terminer, clique droit sur le serveur créé puis Start pour le démarrer.
+

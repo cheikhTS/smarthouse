@@ -1,0 +1,26 @@
+<resources>
+    
+    <string name="titre_err_identification">Erreur d\'identification</string>
+    <string name="titre_deconnexion">Déconnexion</string>
+    
+    <string name="msg_err_identification">Identifiant ou mot de passe incorrect.</string>
+    <string name="msg_deconnexion">Voulez-vous vous déconnecter ?</string>
+    
+    
+    <string name="btn_ok">OK</string>
+    <string name="btn_annuler">Annuler</string>
+    
+	<string name="msg_confirmer_action">Êtes-vous de vouloir exécuter cette action ?</string>
+	<string name="err_msg_authentication">Erreur lors de l\'authentification</string>
+	<string name="err_msg_retriveHomes">Impossible de récuperer les maisons enregistrées</string>
+	<string name="err_msg_accessToHome">Impossible d\'accéder à la maison</string>
+	<string name="alert_homeDelete_title">Suppression d\'une maison</string>
+    <string name="alert_homeDelete_msg">Être vous sur de vouloir supprimer la maison ?</string>
+    <string name="alert_homeAdd_title">Ajout d\'une maison</string>
+    <string name="alert_homeAdd_msgName">Veuiller renseigner le nom de la maison : </string>
+    <string name="alert_homeAdd_msgDNS">Taper l\'adresse pour accéder à votre maison : </string>
+	
+    <string name="err_connectServer_title">Problème de connection</string>
+    <string name="err_connectServer_msg">Impossible de se connecter sur le serveur !</string>
+	
+</resources>
